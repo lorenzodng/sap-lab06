@@ -1,24 +1,22 @@
 package monolith_ttt_game_server.application;
 
-import java.util.HashMap;
-
-import common.ddd.Aggregate;
 import common.ddd.Repository;
 import common.exagonal.OutBoundPort;
 import monolith_ttt_game_server.domain.Game;
 
-/**
- * 
- * Games Repository
- * 
+/*
+interfaccia che collega l'architettura (applicazione) al db delle partite
+contiene tutti i metodi che l'architettura utilizza per interagire con il db delle partite
  */
 @OutBoundPort
 public interface GameRepository extends Repository {
 
+	//aggiunge una partita
 	void addGame(Game game);
-	
-	boolean isPresent(String gameId);
-	
-	Game getGame(String gameId);
 
+	//verifica se una partita è presente
+	boolean isPresent(String gameId);
+
+	//recupera una partita
+	Game getGame(String gameId);
 }

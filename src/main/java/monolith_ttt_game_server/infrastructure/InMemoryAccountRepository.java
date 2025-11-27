@@ -1,49 +1,37 @@
 package monolith_ttt_game_server.infrastructure;
 
 import java.util.HashMap;
-import java.util.logging.Logger;
-
 import common.exagonal.Adapter;
-import monolith_ttt_game_server.application.AccountNotFoundException;
 import monolith_ttt_game_server.application.AccountRepository;
 import monolith_ttt_game_server.domain.Account;
 
-/**
- * 
- * A simple in-memory implementation of the AccountRepository - no persistence.
- * 
- */
+//implementazione della porta di uscita che collega l'architettura (applicazione) al db degli account
 @Adapter
 public class InMemoryAccountRepository implements AccountRepository {
-	static Logger logger = Logger.getLogger("[AccountRepo]");
 
-	private HashMap<String, Account> userAccounts;
+	private HashMap<String, Account> userAccounts; //hashamp che associa l'utente all'account
 	
 	public InMemoryAccountRepository() {
 		userAccounts = new HashMap<>();
 	}
-	
+
+	//aggiunge un account
 	public void addAccount(Account account) {
 		userAccounts.put(account.getId(), account);
 	}
-	
+
+	//recupera un account
 	@Override
-	public Account getAccount(String userName) throws AccountNotFoundException {
+	public Account getAccount(String userName) {
 		return userAccounts.get(userName);
 	}
 
+	//verifica la presenza di un account
 	public boolean isPresent(String userName) {
 		return userAccounts.containsKey(userName);
 	}
-	
-	/**
-	 * 
-	 * Authenticate
-	 * 
-	 * @param userName
-	 * @param password
-	 * @return
-	 */
+
+	//verifica l'autenticazione
 	public boolean isValid(String userName, String password) {
 		return (userAccounts.containsKey(userName) && userAccounts.get(userName).getPassword().equals(password));
 	}

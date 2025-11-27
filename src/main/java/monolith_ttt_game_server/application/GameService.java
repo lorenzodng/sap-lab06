@@ -7,113 +7,38 @@ import monolith_ttt_game_server.domain.InvalidJoinException;
 import monolith_ttt_game_server.domain.TTTSymbol;
 import monolith_ttt_game_server.domain.UserId;
 
-/**
- * 
- * Interface of the Game Service at the application layer
- * 
- */
+//interfaccia che contiene tutti i metodi che il client può richiamare per interagire con il sistema
 @InBoundPort
 public interface GameService  {
 
-	/**
-     * 
-     * Register a new user.
-     * 
-     * @param userName
-     * @param password
-     * @return
-     * @throws AccountAlreadyPresentException
-     */
+	//registra un utente al servizio
 	Account registerUser(String userName, String password) throws AccountAlreadyPresentException;
 
-	/**
-     * 
-     * Get account info.
-     * 
-     * @param userName
-     * @return
-     * @throws AccountNotFoundException
-     */
+	//recupera le informazioni dell'account
 	Account getAccountInfo(String userName) throws AccountNotFoundException;
 
-	/**
-     * 
-     * Get game info.
-     * 
-     * @param gameId
-     * @return
-     * @throws AccountNotFoundException
-     */
+	//recupera le informazioni della partita
 	Game getGameInfo(String gameId) throws GameNotFoundException;
-	
-	/**
-	 * 
-	 * Login an existing user.
-	 * 
-	 * @param userName
-	 * @param password
-	 * @return
-	 * @throws LoginFailedException
-	 */
+
+	//esegue il login di un utente al servizio
 	UserSession login(String userName, String password) throws LoginFailedException;
-	
-	/**
-	 * 
-	 * Retrieve an existing user session.
-	 * 
-	 * @param id
-	 * @return
-	 */
+
+	//recupera la sessione dell'utente
 	UserSession getUserSession(String sessionId);
-	
-	/**
-	 * 
-	 * Retrieve an existing player session.
-	 * 
-	 * @param id
-	 * @return
-	 */
-	public PlayerSession getPlayerSession(String sessionId);
-	
-	/**
-	 * 
-	 * Create a game -- called by a UserSession (logged in user) 
-     *
-	 * @param gameId -- name of the game, to be created
-	 *  
-	 * @throws GameAlreadyPresentException
-	 */
+
+	//recupera la sessione del giocatore
+    PlayerSession getPlayerSession(String sessionId);
+
+	//crea una nuova partita
 	void createNewGame(String gameId) throws GameAlreadyPresentException;
-	
-	/**
-	 * 
-	 * Join a game -- called by a UserSession (logged in user), creates a new PlayerSession
-	 * 
-	 * @param userId -- id of the user (player)
-	 * @param gameId -- id of the game to be joined
-	 * @param symbol -- symbol to be used (X, O)
-	 * @param notifier -- observer of the events 
-	 * @return
-	 * @throws InvalidJoinException
-	 */
+
+	//esegue il join di un utente ad un partita
 	PlayerSession joinGame(UserId userId, String gameId, TTTSymbol symbol, PlayerSessionEventObserver observer) throws InvalidJoinException;
 
-
-	/**
-	 * 
-	 * Bind the specific account repository implementation
-	 * 
-	 * @param repo
-	 */
+	//definisce un repository per gli account
     void bindAccountRepository(AccountRepository repo);
 
-    
-	/**
-	 * 
-	 * Bind the specific game repository implementation
-	 * 
-	 * @param repo
-	 */
+	//definisce un repository per le partite
     void bindGameRepository(GameRepository repo);
     
 }

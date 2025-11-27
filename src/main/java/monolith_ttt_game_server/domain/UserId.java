@@ -2,6 +2,7 @@ package monolith_ttt_game_server.domain;
 
 import common.ddd.ValueObject;
 
+//record per l'id dell'utente
 public record UserId(String id) implements ValueObject {
 
 	public boolean equals(Object obj) {

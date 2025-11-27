@@ -2,14 +2,10 @@ package distributed_ttt.lobby_service.domain;
 
 import common.ddd.Entity;
 
-/**
- * 
- * Modelling a user account. 
- * 
- */
+//utente
 public class User implements Entity<String> {
 	
-	private String userName; /* this is the id */
+	private String userName;
 	private String password;
 	
 	public User(String userName, String password) {
@@ -29,5 +25,4 @@ public class User implements Entity<String> {
 	public String getId() {
 		return userName;
 	}
-	
 }

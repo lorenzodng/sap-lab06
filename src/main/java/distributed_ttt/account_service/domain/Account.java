@@ -2,11 +2,7 @@ package distributed_ttt.account_service.domain;
 
 import common.ddd.Entity;
 
-/**
- * 
- * Modelling a user account. 
- * 
- */
+//account utente
 public class Account implements Entity<String> {
 	
 	private String userName; /* this is the id */
@@ -25,7 +21,6 @@ public class Account implements Entity<String> {
 		this.whenCreated = whenCreated;
 	}
 
-	
 	public String getUserName() {
 		return userName;
 	}
@@ -34,10 +29,6 @@ public class Account implements Entity<String> {
 		return password;
 	}
 
-	public void updatePassword(String password) {
-		this.password = password;
-	}
-	
 	public long getWhenCreated() {
 		return this.whenCreated;
 	}

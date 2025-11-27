@@ -3,56 +3,20 @@ package distributed_ttt.game_service.application;
 import common.exagonal.InBoundPort;
 import distributed_ttt.game_service.domain.*;
 
-/**
- * 
- * Interface of the Game Service at the application layer
- * 
- */
+//interfaccia che contiene tutti i metodi che il client può richiamare per interagire con il servizio di gioco
 @InBoundPort
 public interface GameService  {
 
-
-	/**
-     * 
-     * Get game info.
-     * 
-     * @param gameId
-     * @return
-     * @throws AccountNotFoundException
-     */
+	//recupera una partita
 	Game getGameInfo(String gameId) throws GameNotFoundException;
 		
-	/**
-	 * 
-	 * Retrieve an existing player session.
-	 * 
-	 * @param id
-	 * @return
-	 */
+	//recupera una sessione
 	PlayerSession getPlayerSession(String sessionId);
 	
-	/**
-	 * 
-	 * Create a game -- called by a UserSession (logged in user) 
-     *
-	 * @param gameId -- name of the game, to be created
-	 *  
-	 * @throws GameAlreadyPresentException
-	 */
+	//crea una nuova partita
 	void createNewGame(String gameId) throws GameAlreadyPresentException;
-	
-	/**
-	 * 
-	 * Join a game -- called by a UserSession (logged in user), creates a new PlayerSession
-	 * 
-	 * @param userId -- id of the user (player)
-	 * @param gameId -- id of the game to be joined
-	 * @param symbol -- symbol to be used (X, O)
-	 * @param notifier -- observer of the events 
-	 * @return
-	 * @throws InvalidJoinException
-	 */
-	PlayerSession joinGame(UserId userId, String gameId, TTTSymbol symbol, PlayerSessionEventObserver observer) throws InvalidJoinException;
 
+	//esegue il join di un utente ad un partita
+	PlayerSession joinGame(UserId userId, String gameId, TTTSymbol symbol, PlayerSessionEventObserver observer) throws InvalidJoinException;
     
 }

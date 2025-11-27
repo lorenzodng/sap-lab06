@@ -1,31 +1,23 @@
 package distributed_ttt.game_service.application;
 
 import java.util.HashMap;
-import java.util.logging.Logger;
-
-import common.ddd.Aggregate;
 import common.ddd.Repository;
-import monolith_ttt_game_server.domain.Account;
-import monolith_ttt_game_server.domain.UserId;
 
-/**
- * 
- * Player sessions.
- * 
- */
+//tiene traccia delle sessioni di tutti i giocatori
 public class PlayerSessions implements Repository {
-	static Logger logger = Logger.getLogger("[PlayerSessionRepo]");
 
-	private HashMap<String, PlayerSession> userSessions;
+	private HashMap<String, PlayerSession> userSessions; //hashmap che associa il giocatore alla sessione
 	
 	public PlayerSessions() {
 		userSessions = new HashMap<>();
 	}
-	
+
+	//aggiunge una sessione
 	public void addSession(PlayerSession ps) {
 		userSessions.put(ps.getId(), ps);
 	}
 
+	//recupera la sessione del giocatore
 	public PlayerSession getSession(String sessionId) {
 		return userSessions.get(sessionId);
 	}

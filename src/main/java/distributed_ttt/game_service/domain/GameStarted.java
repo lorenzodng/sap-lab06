@@ -1,8 +1,4 @@
 package distributed_ttt.game_service.domain;
 
-/**
- * 
- * Domain event: game started
- * 
- */
+//record per la partita avviata
 public record GameStarted (String gameId) implements GameEvent {}

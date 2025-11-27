@@ -2,11 +2,7 @@ package monolith_ttt_game_server.domain;
 
 import common.ddd.Entity;
 
-/**
- * 
- * Modelling a user account. 
- * 
- */
+//account utente
 public class Account implements Entity<String> {
 	
 	private String userName; /* this is the id */
