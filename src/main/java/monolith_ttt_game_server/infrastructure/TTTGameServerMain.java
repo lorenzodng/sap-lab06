@@ -15,7 +15,7 @@ public class TTTGameServerMain {
 		service.bindGameRepository(new InMemoryGameRepository()); //crea un repository delle partite e lo collega al servizio principale
 		var vertx = Vertx.vertx(); //crea un'istanza vertx per gestire le richieste http
 		var server = new GameServerController(service, BACKEND_PORT); //crea un'istanza del controller
-		vertx.deployVerticle(server); //avvia il server sulla porta specificata (esegue il metodo "start" del controller"
+		vertx.deployVerticle(server); //avvia il server sulla porta specificata (esegue il metodo "start" del controller)
 	}
 }
 

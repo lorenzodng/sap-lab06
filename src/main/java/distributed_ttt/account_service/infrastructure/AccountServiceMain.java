@@ -13,7 +13,7 @@ public class AccountServiceMain {
 		service.bindAccountRepository(new InMemoryAccountRepository()); //crea un repository degli account utente e lo collega al servizio account
 		var vertx = Vertx.vertx(); //crea un'istanza vertx per gestire le richieste http
 		var server = new AccountServiceController(service, ACCOUNT_SERVICE_PORT); //crea un'istanza del controller
-		vertx.deployVerticle(server); //avvia il server sulla porta specificata (esegue il metodo "start" del controller"
+		vertx.deployVerticle(server); //avvia il server sulla porta specificata (esegue il metodo "start" del controller)
 	}
 }
 
