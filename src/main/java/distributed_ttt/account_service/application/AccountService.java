@@ -15,5 +15,4 @@ public interface AccountService  {
 	
 	//verifica la validità della password
 	boolean isValidPassword(String userName, String password) throws AccountNotFoundException;
-
 }

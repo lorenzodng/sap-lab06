@@ -54,7 +54,7 @@ public class GameServerController extends VerticleBase  {
 				
 		Router router = Router.router(vertx); //router per l'instradamento delle richieste http
 		router.route(HttpMethod.POST, ACCOUNTS_RESOURCE_PATH).handler(this::createNewAccount); //associa alla rotta per creare un nuovo account il relativo metodo
-		router.route(HttpMethod.GET, ACCOUNT_RESOURCE_PATH).handler(this::getAccountInfo);  //associa alla rotta per recuperare le informazioni di un account il relativo metodo
+		router.route(HttpMethod.GET, ACCOUNT_RESOURCE_PATH).handler(this::getAccountInfo); //associa alla rotta per recuperare le informazioni di un account il relativo metodo
 		router.route(HttpMethod.POST, LOGIN_RESOURCE_PATH).handler(this::login); //associa alla rotta per effettuare il login di un account il relativo metodo
         router.route(HttpMethod.GET, GAME_RESOURCE_PATH).handler(this::getGameInfo); //associa alla rotta per recuperare le informazioni di una partita il relativo metodo
         router.route(HttpMethod.POST, CREATE_GAME_RESOURCE_PATH).handler(this::createNewGame); //associa alla rotta per creare una nuova partita il relativo metodo
@@ -139,7 +139,7 @@ public class GameServerController extends VerticleBase  {
 				reply.put("createGameLink", createPath); //popola l'oggetto con il link per la creazione della partita
 				reply.put("joinGameLink", joinPath); //popola l'oggetto con il link per il login
 				reply.put("sessionId", session.getSessionId()); //popola l'oggetto con l'id della sessione
-				reply.put("sessionLink", USER_SESSIONS_RESOURCE_PATH + "/" + session.getSessionId());//popola l'oggetto con il link della sessione
+				reply.put("sessionLink", USER_SESSIONS_RESOURCE_PATH + "/" + session.getSessionId()); //popola l'oggetto con il link della sessione
 				sendReply(context.response(), reply); //invia la risposta al client
 			} catch (LoginFailedException ex) {
 				reply.put("result", "login-failed"); //popola l'oggetto con un'informazione di errore
@@ -279,15 +279,14 @@ public class GameServerController extends VerticleBase  {
 
     //registra un websocket handler al server
     protected void handleEventSubscription(HttpServer server) {
-        server.webSocketHandler(webSocket -> { //registra un handlder per websocket
+        server.webSocketHandler(webSocket -> { //registra un handler per websocket
             logger.log(Level.INFO, "New TTT subscription accepted.");
             webSocket.textMessageHandler(openMsg -> { //imposta un handler per i messaggi ricevuti dal client
                 logger.log(Level.INFO, "For game: " + openMsg);
                 JsonObject obj = new JsonObject(openMsg); //converte il messaggio ricevuto dal client in un oggetto json
                 String playerSessionId = obj.getString("playerSessionId"); //estrae il valore del campo "playerSessionId"
-
                 EventBus eb = vertx.eventBus(); //recupera l'event bus di vertx
-                eb.consumer(playerSessionId, msg -> { //iscrive l'event bus all'indirizzo creato e, ogni volta che arriva un messaggio all'event bus...
+                eb.consumer(playerSessionId, msg -> { //iscrive l'event bus alla sessione giocatore e, ogni volta che arriva un messaggio all'event bus...
                     JsonObject ev = (JsonObject) msg.body(); //...lo converte in json
                     logger.log(Level.INFO, "Event: " + ev.encodePrettily());
                     webSocket.writeTextMessage(ev.encodePrettily()); //lo invia al client tramite websocket

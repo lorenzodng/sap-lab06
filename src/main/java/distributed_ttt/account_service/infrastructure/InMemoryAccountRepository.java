@@ -9,7 +9,7 @@ import distributed_ttt.account_service.domain.Account;
 @Adapter
 public class InMemoryAccountRepository implements AccountRepository {
 
-	private HashMap<String, Account> userAccounts; //hashamp che associa l'utente all'account
+	private HashMap<String, Account> userAccounts; //hashmap che associa l'utente all'account
 	
 	public InMemoryAccountRepository() {
 		userAccounts = new HashMap<>();

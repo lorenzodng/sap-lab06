@@ -12,12 +12,14 @@ import io.vertx.core.json.JsonObject;
 
 /*
 implementazione della porta di uscita che collega il sevizio lobby con il servizio degli account
-è chiamato "proxy" perchè fa da intermediario tra due parti di un sistema
+è chiamato "proxy" perchè svolge due ruoli:
+1) implementa una porta di uscita
+2) fa da intermediario tra due componenti/servizi del sistema
 */
 @Adapter
 public class AccountServiceProxy implements AccountService {
 
-	private String serviceURI; //url del servizio account
+	private String serviceURI; //link del servizio account
 	
 	public AccountServiceProxy(String serviceAPIEndpoint)  {
 		this.serviceURI = serviceAPIEndpoint;		
@@ -54,5 +56,4 @@ public class AccountServiceProxy implements AccountService {
 			throw new ServiceNotAvailableException();
 		}
 	}
-
 }

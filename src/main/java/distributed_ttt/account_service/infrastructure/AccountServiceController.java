@@ -139,5 +139,4 @@ public class AccountServiceController extends VerticleBase {
 		response.putHeader("content-type", "application/json"); //imposta l’header del messaggio http come json
 		response.end(); //chiude la risposta
 	}
-
 }

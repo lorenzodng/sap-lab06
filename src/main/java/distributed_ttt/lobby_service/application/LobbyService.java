@@ -15,7 +15,4 @@ public interface LobbyService  {
 
 	//fa entrare l'utente in una partita
 	String joinGame(String sessionId, String gameId, TTTSymbol symbol) throws JoinGameFailedException;
-	
-	
-    
 }

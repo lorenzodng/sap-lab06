@@ -12,5 +12,4 @@ public interface GameService  {
 
 	//fa entrare un utente in una partita
 	String joinGame(UserId userId, String gameId, TTTSymbol symbol) throws InvalidJoinGameException, JoinGameFailedException, ServiceNotAvailableException;
-	    
 }

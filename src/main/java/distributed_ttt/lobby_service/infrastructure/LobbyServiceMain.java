@@ -16,8 +16,8 @@ public class LobbyServiceMain {
 		lobby.bindAccountService(accountService); //associa l'istanza al servizio di lobby
 		GameService gameService = new GameServiceProxy(GAME_SERVICE_URI); //crea un'istanza del proxy di gioco
 		lobby.bindGameService(gameService); //associa l'istanza al servizio di lobby
-		var server = new LobbyServiceController(lobby, LOBBY_SERVICE_PORT); //crea un'istanza del controller
-		var vertx = Vertx.vertx(); //crea un'istanza vertx per gestire le richieste http
+        var vertx = Vertx.vertx(); //crea un'istanza vertx per gestire le richieste http
+        var server = new LobbyServiceController(lobby, LOBBY_SERVICE_PORT); //crea un'istanza del controller
 		vertx.deployVerticle(server); //avvia il server sulla porta specificata (esegue il metodo "start" del controller"
 	}
 }

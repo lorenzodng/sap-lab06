@@ -5,7 +5,7 @@ import common.ddd.Entity;
 //account utente
 public class Account implements Entity<String> {
 	
-	private String userName; /* this is the id */
+	private String userName;
 	private String password;
 	private long whenCreated;;
 	

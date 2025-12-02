@@ -7,7 +7,7 @@ import distributed_ttt.game_service.domain.Game;
 /*
 interfaccia che collega l'architettura (applicazione) al db delle partite
 contiene tutti i metodi che l'architettura utilizza per interagire con il db delle partite
- */
+*/
 @OutBoundPort
 public interface GameRepository extends Repository {
 
