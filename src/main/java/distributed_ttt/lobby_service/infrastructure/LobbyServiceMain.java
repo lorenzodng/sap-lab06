@@ -3,6 +3,7 @@ package distributed_ttt.lobby_service.infrastructure;
 import distributed_ttt.lobby_service.application.*;
 import io.vertx.core.Vertx;
 
+//sever servizio di lobby
 public class LobbyServiceMain {
 
     static final int LOBBY_SERVICE_PORT = 9001; //porta sul quale il server ascolta le richiesta http

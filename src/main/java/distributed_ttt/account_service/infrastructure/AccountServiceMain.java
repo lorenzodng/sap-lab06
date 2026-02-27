@@ -3,6 +3,7 @@ package distributed_ttt.account_service.infrastructure;
 import distributed_ttt.account_service.application.AccountServiceImpl;
 import io.vertx.core.Vertx;
 
+//sever servizio account
 public class AccountServiceMain {
 
 	static final int ACCOUNT_SERVICE_PORT = 9000; //porta sul quale il server ascolta le richiesta http

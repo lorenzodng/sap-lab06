@@ -3,6 +3,7 @@ package distributed_ttt.game_service.infrastructure;
 import distributed_ttt.game_service.application.*;
 import io.vertx.core.Vertx;
 
+//server servizio di gioco
 public class GameServiceMain {
 
 	static final int GAME_SERVICE_PORT = 9002; //porta sul quale il server ascolta le richiesta http
